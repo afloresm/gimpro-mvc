@@ -11,13 +11,14 @@ class FrontController
 		require 'libs/ModelBase.php'; //Clase modelo base
 		require 'libs/View.php'; //Mini motor de plantillas
 		
-		require 'config.php'; //Archivo con configuraciones.
+		require 'Config.php'; //Archivo con configuraciones.
 		
 		//Con el objetivo de no repetir nombre de clases, nuestros controladores
-		//terminaran todos en Controller. Por ej, la clase controladora Items, será ItemsController
+		//terminaran todos en Controller. Por ej, la clase controladora Items, serï¿½ ItemsController
 		
 		//Formamos el nombre del Controlador o en su defecto, tomamos que es el IndexController
-		if(! empty($_GET['controlador']))
+
+        if(! empty($_GET['controlador']))
 		      $controllerName = $_GET['controlador'] . 'Controller';
 		else
 		      $controllerName = "IndexController";
@@ -42,7 +43,7 @@ class FrontController
 			trigger_error ($controllerName . '->' . $actionName . '` no existe', E_USER_NOTICE);
 			return false;
 		}
-		//Si todo esta bien, creamos una instancia del controlador y llamamos a la accion
+		//Si esta bien, creamos una instancia del controlador y llamamos a la accion
 		$controller = new $controllerName();
 		$controller->$actionName();
 	}
