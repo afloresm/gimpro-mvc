@@ -22,9 +22,9 @@
 </head>
 <body id="registrar">
 <div id="wrapper">
-    <h1><a href="registrar.php.html">Registro</a></h1>
+    <h1><a href="registrar.php">Registro</a></h1>
 
-    <form action="?controlador=Index&accion=validate" method="post" name="loginform" id="loginform">
+    <form action="?controlador=Registrar&accion=guardar" method="post" name="loginform" id="loginform">
         <fieldset>
 
            <label><h2> Datos personales:</h2></label>
@@ -37,12 +37,12 @@
 
 
                 <label>Apellidos:
-            <input class="registar" type="text" id="apellidos" name="Apellidos" placeholder="paterno/materno" size="30"/></label>
+                <input class="registar" name="ape" id="ape" type="text" placeholder="paterno/materno" size="30"/></label>
 
                  <br/>
            	    <label>G&eacute;nero:
-		        Masculino <input name="gen" id="gen" type = "radio" value="Masculino" requiered >
-				Femenino <input name="gen" id="gen" type = "radio" value="Femenino" requiered ></label>
+		        Masculino <input name="gen" type = "radio" value="Masculino" requiered >
+				Femenino <input name="gen"  type = "radio" value="Femenino" requiered ></label>
 
               <br/><br/>
                 <label>Fecha de Nacimiento:</label>

@@ -20,23 +20,38 @@ class RegistrarController extends ControllerBase {
 
 		//Le pedimos al modelo todos los items
 		$respuesta = $registar->validar_login($_POST['user']);
-
+        
 		//Pasamos a la vista toda la informaci�n que se desea representar
 		$data['respuesta'] = $respuesta;
 
+        
         if($data['respuesta']){
 
-            $registar->guardar($_POST['id_user'],$_POST['username'],$_POST['password'],$_POST['nombres'],$_POST['apellidos'],$_POST['genero'],$_POST['fecha_nacimiento'],$_POST['rut'],$_POST['rol'],$_POST['carrera'],$_POST['ciudad'],$_POST['celular'],$_POST['email'],$_POST['dias_entrenamiento'],$_POST['observaciones'],$_POST['perfil'],$_POST['fecha_inicio'],$_POST['objetivo'],$_POST['ranking']);
-            
+            $fecha_nacimiento = $_POST["anio"]."-".$_POST["mes"]."-".$_POST["dia"];
 
+            // Almacena datos personales del alumno
+            $r=$registar->save($_POST['user'],$_POST['pass'],$_POST['nombres'],$_POST['ape'],$_POST['gen'],$fecha_nacimiento,$_POST['rut'],$_POST['rol'],$_POST['carrera'],$_POST['ciudad'],$_POST['celular'],$_POST['email']);
 
-        }
+            $data['respuesta'] = $r;
 
-		//Finalmente presentamos nuestra plantilla
-		$this->view->show("respuesta.php", $data);
+            if($r){
 
+              $id=$registar->getID($_POST['user'],$_POST['pass']);
+              $data['respuesta'] = $id;
 
-    }
+                if($id != false) {
+
+                  $data['respuesta'] = $id;
+                  $this->view->show("encuesta.php", $data);
+                }else  $this->view->show("index.php", $data);
+            } else { echo "Alumno no registrado";
+                     $this->view->show("index.php", $data);
+                     }
+        }else { echo "Username repetido";
+                $this->view->show("registrar.php", $data);
+                }
+
+   }
 
     
 

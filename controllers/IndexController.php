@@ -16,6 +16,12 @@ class IndexController extends ControllerBase
         $this->view->show("login.php");
     }
 
+    public function registrar()
+    {
+        $this->view->show("registrar.php");
+
+    }
+
     public function validate()
     {
         require 'models/AuthModel.php';
