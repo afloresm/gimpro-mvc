@@ -19,6 +19,21 @@ class EncuestaModel extends ModelBase{
 
         if($r) return true;
         else return false;
+   }
+
+    public function get_respuesta($id,$i){
+        
+        $consulta = $this->db->prepare("SELECT respuesta FROM encuesta WHERE id_user=:id and id_pregunta=:i");
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':i', $i);
+        $r=$consulta->execute();
+        $row = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        if($row != 0) {
+            $resp=$row['respuesta'];
+            return $resp; }
+        else return false;
+
     }
 
 

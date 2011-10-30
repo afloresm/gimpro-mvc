@@ -42,9 +42,23 @@ class RegistrarModel extends ModelBase{
         else return false;
         }
 
+    public  function save_IMC($id,$peso,$altura){
+
+         $consulta = $this->db->prepare("INSERT INTO imc (id_user,peso,altura) VALUES (:id,:peso,:altura)");
+         $consulta->bindParam(':id', $id);
+         $consulta->bindParam(':peso', $peso);
+         $consulta->bindParam(':altura', $altura);
+
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+
+    }
+
     public function getID($user,$pass){
 
-        $consulta = $this->db->prepare("SELECT id_user FROM usuario WHERE username=:usuario and password=:pass ");
+        $consulta = $this->db->prepare("SELECT id_user FROM usuario WHERE username=:usuario and password=:password");
         $consulta->bindParam(':usuario', $user);
         $consulta->bindParam(':password', $pass);
         $consulta->execute();

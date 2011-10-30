@@ -18,36 +18,41 @@ class RegistrarController extends ControllerBase {
         //Creamos una instancia de nuestro "modelo"
 		$registar = new RegistrarModel();
 
-		//Le pedimos al modelo todos los items
+		//Valida si es un user válido
 		$respuesta = $registar->validar_login($_POST['user']);
-        
-		//Pasamos a la vista toda la informaci�n que se desea representar
-		$data['respuesta'] = $respuesta;
+        $data['respuesta'] = $respuesta;
 
-        
+        // Si es un user válido se procede a realizar el registro
         if($data['respuesta']){
 
             $fecha_nacimiento = $_POST["anio"]."-".$_POST["mes"]."-".$_POST["dia"];
 
             // Almacena datos personales del alumno
             $r=$registar->save($_POST['user'],$_POST['pass'],$_POST['nombres'],$_POST['ape'],$_POST['gen'],$fecha_nacimiento,$_POST['rut'],$_POST['rol'],$_POST['carrera'],$_POST['ciudad'],$_POST['celular'],$_POST['email']);
-
             $data['respuesta'] = $r;
 
             if($r){
 
+              //Función que obtiene el id del alumno
               $id=$registar->getID($_POST['user'],$_POST['pass']);
               $data['respuesta'] = $id;
 
                 if($id != false) {
 
-                  $data['respuesta'] = $id;
-                  $this->view->show("encuesta.php", $data);
-                }else  $this->view->show("index.php", $data);
+                 //Almacena datos físicos del alumno
+                  $r=$registar->save_IMC($id,$_POST['peso'],$_POST['altura']);
+
+                    if($r){
+                         $data['respuesta'] = $id;
+                     //    echo "Alumno registrado";
+                         $this->view->show("encuesta.php",$data);
+                    }else{ echo "No se registraron los datos físicos del alumno, vuelva a intentarlo por favor";
+                           $this->view->show("registrar.php", $data);}
+                }else  $this->view->show("registrar.php", $data);
             } else { echo "Alumno no registrado";
                      $this->view->show("index.php", $data);
                      }
-        }else { echo "Username repetido";
+        }else { echo "Username repetido, digite uno nuevo";
                 $this->view->show("registrar.php", $data);
                 }
 
