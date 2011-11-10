@@ -10,6 +10,7 @@
 class AlumnosModel extends ModelBase
 {
 
+       //Muestra los ultimos 5 usuarios registrados
     public function lastRegister()
     {
 
@@ -19,17 +20,7 @@ class AlumnosModel extends ModelBase
 
         return $query;
     }
-    public function Validar($user, $pass)
-    {
-        $q = $this->db->prepare("SELECT password from usuario where username=:usuario");
-        $q->bindParam(':usuario', $user);
-        $q->execute();
-        $row = $q->fetch(PDO::FETCH_ASSOC);
-        if ($row["password"] == "" || $row["password"] != $pass) {
-            return 0; // usuario/contraseña incorrecta
-        }
-        else return 1; // usuario/contraseña correcta
-    }
+
 
 }
 ?>

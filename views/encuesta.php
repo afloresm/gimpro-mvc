@@ -126,6 +126,10 @@
 				<td><input name="otrae" value="si" type = "checkbox"  onclick="document.registro.eotra.disabled=!document.registro.eotra.disabled">Otra:</td>
 				<td><input class="registar" name="eotra" id="eotra" type = "text" required disabled></td>
 			</tr>
+            <tr>
+				<td><input name="noenfermedad" value="no" type = "checkbox"">No sufro de enfermedades</td>
+			</tr>
+
         
 	</table>
 		  <h3>Lesiones</h3>
@@ -147,6 +151,10 @@
 				<td><input name="otral" id="otra" value="si" type = "checkbox"  onclick="document.registro.lotra.disabled=!document.registro.lotra.disabled">Otra Zona:</td>
 				<td><input class="registar" name="lotra" id="lotra" type = "text" required disabled></td>
 			</tr>
+            <tr>
+				<td><input name="nolesiones" value="no" type = "checkbox"">No sufro de lesiones</td>
+			</tr>
+        
 	</table>
 		  <h3>Medicamentos</h3>
 	<table>

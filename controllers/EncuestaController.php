@@ -13,9 +13,13 @@ class EncuestaController extends ControllerBase {
 
          //Incluye el modelo que corresponde
 		require 'models/EncuestaModel.php';
+        require 'models/RegistrarModel.php';
 
         //Creamos una instancia de nuestro "modelo"
 		$encuesta = new EncuestaModel();
+        $registro = new RegistrarModel();
+
+        $mensaje = "";
 
         //Cálculo de la encuesta
         $id = $_POST['id'];
@@ -40,21 +44,23 @@ class EncuestaController extends ControllerBase {
 	    else if ($_POST["tabaco"]=="no"){ $ranking+=7; $resp[3]=$_POST["tabaco"]." consumo cigarrillos";}
 
 	    if ($_POST["alcohol"]=="si"){ $ranking+=0; $resp[4]=$_POST["alcohol"].".".$_POST["alcoholCantidad"]." vaso(s)";}
-	    else if ($_POST["alcohol"]=="no"){ $ranking+=3; $resp[4]=$_POST["tabaco"]."consumo alcohol";}
+	    else if ($_POST["alcohol"]=="no"){ $ranking+=3; $resp[4]=$_POST["alcohol"]."consumo alcohol";}
 
 	    if ($_POST["drogas"]=="si"){ $ranking+=0; $resp[5]=$_POST["drogas"].".".$_POST["drogasCantidad"]."veces";}
 	    else if ($_POST["drogas"]=="no"){ $ranking+=10; $resp[5]=$_POST["drogas"]." consumo drogas";}
 
-	    if (isset($_POST["cardiaca"])){ $ranking+=5; $resp[6]="Zona afectada:Cardiaca.Enfermedad: ".$_POST["ecardiaca"];}
-	    if (isset($_POST["hepatica"])){ $ranking+=3; $resp[6]="Zona afectada:Hepática.Enfermedad: ".$_POST["ehepatica"];}
-        if (isset($_POST["sexual"])){ $ranking+=3; $resp[6]="Zona afectada:Sexual.Enfermedad: ".$_POST["esexual"];}
-        if (isset($_POST["respiratoria"])){ $ranking+=5; $resp[6]="Zona afectada:Respiratoria.Enfermedad: ".$_POST["erespiratoria"];}
-        if (isset($_POST["otrae"])){ $ranking+=3; $resp[6]="Zona afectada:Otra.Enfermedad: ".$_POST["eotra"];}
+	    if (isset($_POST["cardiaca"])){ $enfermedad=$_POST["ecardiaca"]; $tipoe="cardiaca"; $resp[6]="Zona afectada:Cardiaca.Enfermedad: ".$_POST["ecardiaca"];}
+	    if (isset($_POST["hepatica"])){ $enfermedad=$_POST["ehepatica"]; $tipoe="hepatica"; $resp[6]="Zona afectada:Hepática.Enfermedad: ".$_POST["ehepatica"];}
+        if (isset($_POST["sexual"])){   $enfermedad=$_POST["esexual"]; $tipoe="sexual"; $resp[6]="Zona afectada:Sexual.Enfermedad: ".$_POST["esexual"];}
+        if (isset($_POST["respiratoria"])){ $enfermedad=$_POST["erespiratoria"];  $tipoe="respiratoria";$resp[6]="Zona afectada:Respiratoria.Enfermedad: ".$_POST["erespiratoria"];}
+        if (isset($_POST["otrae"])){ $enfermedad=$_POST["eotra"]; $tipoe="otra"; $resp[6]="Zona afectada:Otra.Enfermedad: ".$_POST["eotra"];}
+        if (isset($_POST["noenfermedad"])){ $enfermedad="no tiene enfermedad"; $tipoe="no tiene enfermedad"; $ranking+=19; $resp[6]="No tengo enfermedades";}
 
-	    if (isset($_POST["brazos"])){ $ranking+=2; $resp[7]="Lesión:Brazos.Nombre: ".$_POST["lbrazos"];}
-        if (isset($_POST["piernas"])){ $ranking+=2; $resp[7]="Lesión:Piernas.Nombre: ".$_POST["lpiernas"];}
-        if (isset($_POST["torax"])){ $ranking+=3; $resp[7]="Lesión:Torax.Nombre: ".$_POST["ltorax"];}
-        if (isset($_POST["otral"])){ $ranking+=3; $resp[7]="Lesión:Otra.Nombre: ".$_POST["lotra"];}
+	    if (isset($_POST["brazos"])){ $lesion=$_POST["lbrazos"]; $tipol="brazos";  $resp[7]="Lesión:Brazos.Nombre: ".$_POST["lbrazos"];}
+        if (isset($_POST["piernas"])){ $lesion=$_POST["lpiernas"]; $tipol="piernas"; $resp[7]="Lesión:Piernas.Nombre: ".$_POST["lpiernas"];}
+        if (isset($_POST["torax"])){ $lesion=$_POST["ltorax"]; $tipol="torax"; $resp[7]="Lesión:Torax.Nombre: ".$_POST["ltorax"];}
+        if (isset($_POST["otral"])){ $lesion=$_POST["lotral"]; $tipol="otra"; $resp[7]="Lesión:Otra.Nombre: ".$_POST["lotra"];}
+        if (isset($_POST["nolesion"])){ $lesion="no tiene lesión"; $tipol="no tiene lesión"; $ranking+=10; $resp[7]="No tengo lesiones"; }
 
 	    if ($_POST["medica"]=="si"){ $ranking+=0; $resp[8]=$_POST["medica"].".Consumo:".$_POST["nombreMedica"];}
 	    else if ($_POST["medica"]=="no"){ $ranking+=5; $resp[8]=$_POST["medica"]." consumo medicamentos"; }
@@ -73,12 +79,21 @@ class EncuestaController extends ControllerBase {
 	       $respuesta=$encuesta->save($id,$i,$resp[$i]);
 		   if($respuesta){ }
 		   else{
-           $data['respuesta'] = false;
-           echo "No se logro completar el almacenamiento de la encuesta, vuelva a intentarlo por favor";
+           $mensaje .= '<script name="accion">alert("No se logro completar el almacenamiento de la encuesta, vuelva a intentarlo por favor") </script>';
+           echo $mensaje;
+           $data['respuesta'] = $id;
            $this->view->show("encuesta.php", $data);
             break;
            }
 		}
+            //Almacena nota de la encuesta 
+           $respuesta=$encuesta->save_ranking($id,$ranking);
+
+            //Almacena enfermedades del alumno
+           $respuesta=$registro->save_enfermedad($id,$enfermedad,$tipoe);
+           $respuesta=$registro->save_lesion($id,$lesion,$tipol);
+
+          if($respuesta){
 
           // Resultados de la encuesta
          $data['resp0'] = $encuesta->get_respuesta($id,0);
@@ -92,6 +107,9 @@ class EncuestaController extends ControllerBase {
          $data['resp8'] = $encuesta->get_respuesta($id,8);
          $data['resp9'] = $encuesta->get_respuesta($id,9);
          $data['resp10'] = $encuesta->get_respuesta($id,10);
+         }else{ $mensaje .= '<script name="accion">alert("No se logro obtener las respuesta de la encuesta, intente denuevo por favor") </script>';
+           echo $mensaje;
+           $this->view->show("encuesta.php",$data);}
 
 		$data['id'] = $id;
         $this->view->show("resultados.php", $data);

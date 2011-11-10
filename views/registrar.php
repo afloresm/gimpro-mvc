@@ -32,59 +32,59 @@
             <p>
 
                 <label>Nombres:
-                <input class="registar" name="nombres" id="nombres" type="text" placeholder="Nombres" size="30" autofocus/></label>
+                <input class="registar" name="nombres" id="nombres" type="text" placeholder="Nombres" size="30" required autofocus/></label>
             </p>
 
 
                 <label>Apellidos:
-                <input class="registar" name="ape" id="ape" type="text" placeholder="paterno/materno" size="30"/></label>
+                <input class="registar" name="ape" id="ape" type="text" placeholder="paterno/materno" size="30" required /></label>
 
                  <br/>
            	    <label>G&eacute;nero:
-		        Masculino <input name="gen" type = "radio" value="Masculino" requiered >
-				Femenino <input name="gen"  type = "radio" value="Femenino" requiered ></label>
+		        Masculino <input name="gen" type = "radio" value="Masculino" required >
+				Femenino <input name="gen"  type = "radio" value="Femenino" required ></label>
 
               <br/><br/>
                 <label>Fecha de Nacimiento:</label>
-              <label><input id="dia" name="dia" type="number" size="2" maxlength="2"  placeholder="01" pattern="[0-9]{2}"/> </label>
-             <label>/<input id="mes" type="number" name="mes" size="2" maxlength="2" placeholder="01" pattern="[0-9]{2}"/></label>
-            <label> /<input id="anio" type="number" name="anio" size="4" maxlength="4" placeholder="1990" pattern="[0-9]{4}"/></label>
+              <label><input id="dia" name="dia" type="number" size="2" maxlength="2"  placeholder="01" pattern="[0-9]{2}" required/> </label>
+             <label>/<input id="mes" type="number" name="mes" size="2" maxlength="2" placeholder="01" pattern="[0-9]{2}" required/></label>
+            <label> /<input id="anio" type="number" name="anio" size="4" maxlength="4" placeholder="1990" pattern="[0-9]{4}" required/></label>
 
             <br/><br/>
 
             <label>Rut:
-            <input id="rut" name="rut" type = "text" placeholder="16100200-0" size="10" maxlength="10" pattern="[0-9]{8}[-]{1}[Kk0-9]{1}"></label>
+            <input id="rut" name="rut" type = "text" placeholder="16100200-0" size="10" maxlength="10" pattern="[0-9]{8}[-]{1}[Kk0-9]{1}" required></label>
 
               <br/><br/>
              <label>Rol:
-             <input id="rol" name="rol" type = "text" pattern="[0-9]{7}[-]{1}[0-9]{1}" placeholder="2730000-1" size="10"></label>
+             <input id="rol" name="rol" type = "text" pattern="[0-9]{7}[-]{1}[0-9]{1}" placeholder="2730000-1" size="10" required></label>
 
              <br/><br/>
              <label>Carrera:
-             <input class="registar" id="carrera" name="carrera" type = "text" placeholder="Carrera/profesi&oacute;n" size="30"></label>
+             <input class="registar" id="carrera" name="carrera" type = "text" placeholder="Carrera/profesi&oacute;n" size="30" required></label>
 
              <br/>
              <label>Ciudad:
-             <input class="registar" id="ciudad" name="ciudad" type = "text" placeholder="Ciudad de residencia" size="30"> </label>
+             <input class="registar" id="ciudad" name="ciudad" type = "text" placeholder="Ciudad de residencia" size="30" required> </label>
 
              <br/>
              <label>Celular:
-             <input id="celular" name="celular" type = "tel" pattern="[0-9]{2}[-]{1}[0-9]{8}" placeholder="09-81234567" size="10"></label>
+             <input id="celular" name="celular" type = "tel" pattern="[0-9]{2}[-]{1}[0-9]{8}" placeholder="09-81234567" size="10" required></label>
 
               <br/><br/>
              <label>Email:
-             <input  class="registar" id="email" name="email" type = "email" pattern=".+\@.+\..+" placeholder="E-mail de contacto"  size="30"></label>
+             <input  class="registar" id="email" name="email" type = "email" pattern=".+\@.+\..+" placeholder="E-mail de contacto"  size="30" required></label>
 
               <br/>
               <label> <h2> Datos f&iacute;sicos:</h2></label>
 
                  <br/>
                  <label>Altura [Metros]:
-                 <input id="altura" name="altura" type = "text" placeholder="1.60" pattern="[1-9]{1}[.]{0,1}[0-9]{0,2}" size="5"></label>
+                 <input id="altura" name="altura" type = "text" placeholder="1.60" pattern="[1-9]{1}[.]{0,1}[0-9]{0,2}" size="5" required></label>
 
                <br/><br/>
                    <label>Peso [Kilogramos]:
-                   <input id="peso" name="peso" type = "text" placeholder="70" size="5" pattern="[1-9]{1,3}[.]{0,1}[0-9]{0,2}"></label>
+                   <input id="peso" name="peso" type = "text" placeholder="70" size="5" pattern="[1-9]{1,3}[.]{0,1}[0-9]{0,2}" required></label>
 
                <br/><br/>
 
@@ -92,11 +92,11 @@
 
                <br/>
                 <label>Usuario:
-				<input class="registar" id="user" name="user" type = "text" placeholder="Nombre de usuario"  size="30"></label>
+				<input class="registar" id="user" name="user" type = "text" placeholder="Nombre de usuario"  size="30" required></label>
 
                <br/>
 		       <label>Password:
-			   <input class="registar" id="pass" name="pass" type = "password" placeholder="Ingrese password"  size="30"></label>
+			   <input class="registar" id="pass" name="pass" type = "password" placeholder="Ingrese password"  size="30" required></label>
 
             
             <input class="button-primary" id="login-submit" type="submit" value="Registrar"/>

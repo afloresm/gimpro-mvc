@@ -19,15 +19,49 @@
 
     <link href="public/css/perfil.css" rel="stylesheet" type="text/css" />
 
+    <script type="text/javascript" src="public/js/jquery-1.6.4.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+
+    $('#sidebar li').click(function(){
+
+        var toLoad = $(this).attr('id');
+        var toLoad = "?controlador=Profesor&accion="+toLoad;
+    //    alert (toLoad);
+        
+    $('#content').hide('fast',loadContent);
+    $('#load').remove();
+    //$('#wrapper').append('<span id="load">LOADING...</span>');
+    $('#load').fadeIn('normal');
+   // window.location.hash = $(this).attr('href').substr(0,$(this).attr('href').length-5);
+    function loadContent() {
+        $('#content').load(toLoad,'',showNewContent())
+    }
+    function showNewContent() {
+        $('#content').show('slow',hideLoader());
+    }
+    function hideLoader() {
+        $('#load').fadeOut('normal');
+    }
+    return false;
+});
+});
+
+    </script>
+
+    <!-- Especificamos los script: JQUERY y el controlador del menu: menu_profesor.js -->
+    <!--	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script> -->
+    <!--	<script type="text/javascript" src="menu_profesor.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.url.min.js"></script> -->
+    <!-- <script type="text/javascript" src="ajax.js"></script> -->
+
 </head>
 
 <body>
 
-<!-- Especificamos los script: JQUERY y el controlador del menu: menu_profesor.js -->
-	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
-	<script type="text/javascript" src="menu_profesor.js"></script>
-<script type="text/javascript" src="js/jquery.url.min.js"></script>
-<script type="text/javascript" src="ajax.js"></script>
+
 	
     <div id="header">
 		<!-- imagen cabecera del GYM -->
@@ -45,7 +79,7 @@
 
     <div id="main"><div id="main2">	
 
-	<!-- nuestro menu principal... fijarse que es sidebar y dentro de este va el li con el id que identifica la seccion-->
+	<!-- nuestro menu principal... fijarse que es sidebar y dentro de este va el li con el id que registra la accion a realizar-->
             <div id="sidebar">
 
                 <h2>Menu Principal</h2>
@@ -55,7 +89,7 @@
 
                     <?php
 
-                    $items_menu=array("item1","item2","item3","item1","item2","item3");
+                    $items_menu=array("","home","item3","item1","item2","item3");
 
                     foreach ($items_menu as $item)
                     {

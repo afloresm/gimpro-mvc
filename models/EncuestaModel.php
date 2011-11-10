@@ -21,6 +21,17 @@ class EncuestaModel extends ModelBase{
         else return false;
    }
 
+    public  function save_ranking($id,$ranking){
+        $consulta = $this->db->prepare("UPDATE usuario SET nota_encuesta=:ranking WHERE id_user=:id");
+        $consulta->bindParam(':ranking', $ranking);
+        $consulta->bindParam(':id', $id);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+
+    }
+
     public function get_respuesta($id,$i){
         
         $consulta = $this->db->prepare("SELECT respuesta FROM encuesta WHERE id_user=:id and id_pregunta=:i");

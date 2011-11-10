@@ -17,12 +17,13 @@ class RegistrarController extends ControllerBase {
 
         //Creamos una instancia de nuestro "modelo"
 		$registar = new RegistrarModel();
+        $mensaje="";
 
-		//Valida si es un user válido
+        //Valida si es un user válido
 		$respuesta = $registar->validar_login($_POST['user']);
         $data['respuesta'] = $respuesta;
 
-        // Si es un user válido se procede a realizar el registro
+         // Si es un user válido se procede a realizar el registro
         if($data['respuesta']){
 
             $fecha_nacimiento = $_POST["anio"]."-".$_POST["mes"]."-".$_POST["dia"];
@@ -46,14 +47,17 @@ class RegistrarController extends ControllerBase {
                          $data['respuesta'] = $id;
                      //    echo "Alumno registrado";
                          $this->view->show("encuesta.php",$data);
-                    }else{ echo "No se registraron los datos físicos del alumno, vuelva a intentarlo por favor";
-                           $this->view->show("registrar.php", $data);}
-                }else  $this->view->show("registrar.php", $data);
-            } else { echo "Alumno no registrado";
-                     $this->view->show("index.php", $data);
+                    }else{ $mensaje .= '<script name="accion">alert("No se registraron los datos físicos del alumno, vuelva a intentarlo por favor") </script>';
+                        echo $mensaje;
+                           $this->view->show("registrar.php");}
+                }else  $this->view->show("registrar.php");
+            } else { $mensaje .= '<script name="accion">alert("Alumno no registrado") </script>';
+                      echo $mensaje;
+                     $this->view->show("index.php");
                      }
-        }else { echo "Username repetido, digite uno nuevo";
-                $this->view->show("registrar.php", $data);
+        }else { $mensaje .= '<script name="accion">alert("Username repetido, digite uno nuevo") </script>';
+               echo $mensaje;
+                $this->view->show("registrar.php");
                 }
 
    }

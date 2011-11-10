@@ -69,6 +69,32 @@ class RegistrarModel extends ModelBase{
             return $id; }
         else return false; 
     }
+
+    public function save_enfermedad($id_user,$nombre,$tipo){
+
+        $consulta = $this->db->prepare("INSERT INTO enfermedades (id_user,nombre,tipo) VALUES (:id_user,:nombre,:tipo)");
+        $consulta->bindParam(':id_user', $id_user);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':tipo', $tipo);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+
+    }
+
+     public function save_lesion($id_user,$nombre,$tipo){
+
+        $consulta = $this->db->prepare("INSERT INTO lesiones (id_user,nombre,tipo) VALUES (:id_user,:nombre,:tipo)");
+        $consulta->bindParam(':id_user', $id_user);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':tipo', $tipo);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+
+    }
 }
 
 
