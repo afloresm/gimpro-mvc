@@ -36,8 +36,8 @@
                 <input class="input" type="password" id="password" name="password"/></label>
             <br/>
 
-            <p class="forgetmenot"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever"
-                                                 tabindex="90"/> Recu&eacute;rdame</label>
+            <p><label><input name="perfil" type="radio" id="perfil" value="alumno" tabindex="90"/>Alumno</label>
+            <label><input name="perfil" type="radio" id="perfil" value="profesor" tabindex="90"/>Profesor</label>
             </p>
 
             <br/>

@@ -1,5 +1,5 @@
 <?php
-class ItemsModel extends ModelBase
+class EjerciciosModel extends ModelBase
 {
 	public function listadoTotal()
 	{
