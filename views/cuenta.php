@@ -26,6 +26,32 @@ $(document).ready(function() {
 	});
 
 });
+
+function loadVideo() {
+
+           var xmlhttp;
+           if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+               xmlhttp = new XMLHttpRequest();
+           }
+           else {// code for IE6, IE5
+               xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+           }
+
+           xmlhttp.onreadystatechange = function() {
+               if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                  alert(xmlhttp.responseText);
+
+                  // document.getElementById("link2").innerHTML = xmlhttp.responseText;
+               }
+           }
+
+           xmlhttp.open("POST", "?controlador=Alumno&accion=actualizar_datos", true);
+           xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+           xmlhttp.send();
+       }
+
+
+
 </script>
 
 </head>
@@ -44,7 +70,7 @@ $(document).ready(function() {
 
         <div id="tab1" class="tab_content">
 
-    <form action="?controlador=Alumno&accion=actualizar_datos" name="Datos Personales" method="post" autocomplete= "off" ">
+    <form onsubmit="loadVideo()" name="Datos Personales" method="post" autocomplete= "off" ">
     <td><input name="id" type = "hidden" value="<?php echo $id_user; ?>"></td>
     <table>
     <tr>

@@ -32,9 +32,7 @@ class AlumnoController extends ControllerBase {
         $r = $alumno->update_personal($id,$_POST["nombres"],$_POST["apellidos"],$fecha_nacimiento,$_POST["rut"],$_POST["ciudad"],$_POST["celular"],$_POST["email"]);
 
         if($r){
-        $perfil= new PerfilController();
-
-        $perfil->show('alumno');
+        return $alumno->datos($id);
 
         }
         else {
