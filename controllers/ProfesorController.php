@@ -39,10 +39,7 @@ class ProfesorController extends ControllerBase {
 		$listado = $users->lastRegister();
 
 		//Pasamos a la vista toda la informaci�n que se desea representar
-		$data['last'] = $listado;
-
-		//Finalmente presentamos nuestra plantilla
-		$this->view->show("perfil.php", $data);
+         return $listado;
     }
 
     function ejercicios(){
@@ -56,5 +53,18 @@ class ProfesorController extends ControllerBase {
            $data['listado'] = $lista;
            $this->view->show("ejercicios.php",$data);
     }
+    function estadisticas(){
+     
+         require 'controllers/GraficController.php';
+         
+           $grafic=new GraficController();
+
+        $grafic->ListarGraficConsumo();
+        $grafic->ListarGraficEnfermedades();
+       // $grafic->ListarGraficLesiones();
+          //$grafic->ListarGraficActFisica();
+           $this->view->show("estadistica.php");
+    }
+
 }
 ?>

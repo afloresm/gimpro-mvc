@@ -7,8 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class AlumnosModel extends ModelBase
-{
+class AlumnosModel extends ModelBase {
 
        //Muestra los ultimos 5 usuarios registrados
     public function lastRegister()
@@ -45,6 +44,34 @@ class AlumnosModel extends ModelBase
         return $query;
     }
 
+    public function datos($id){
+
+        $consulta = $this->db->prepare("SELECT * FROM usuario WHERE id_user=:id");
+        $consulta->bindParam(':id', $id);
+        $r=$consulta->execute();
+        $row = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        if($row != 0) return $row; 
+        else return false;
+    }
+
+    public function update_personal($id,$nombres,$apellidos,$fecha_nacimiento,$rut,$ciudad,$celular,$email){
+
+        $consulta = $this->db->prepare("UPDATE usuario SET nombres=:nombres, apellidos=:apellidos, fecha_nacimiento=:fecha_nacimiento, rut=:rut, ciudad=:ciudad, celular=:celular, email=:email WHERE id_user=:id ");
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':nombres', $nombres);
+        $consulta->bindParam(':apellidos', $apellidos);
+        $consulta->bindParam(':fecha_nacimiento', $fecha_nacimiento);
+        $consulta->bindParam(':rut', $rut);
+        $consulta->bindParam(':ciudad', $ciudad);
+        $consulta->bindParam(':celular', $celular);
+        $consulta->bindParam(':email', $email);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+    }
 
 }
+
 ?>

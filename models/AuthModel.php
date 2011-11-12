@@ -2,6 +2,7 @@
 
 class AuthModel extends ModelBase
 {
+
     public function Validar($user, $pass, $perfil){
 
         if($perfil=='alumno'){
@@ -25,6 +26,7 @@ class AuthModel extends ModelBase
         }
         else return 1; // usuario/contraseña correcta 
     }
+
     }
 
       public function getID($user,$pass,$perfil){
@@ -53,5 +55,6 @@ class AuthModel extends ModelBase
         else return false;
         }
     }
+
 
 }

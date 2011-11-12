@@ -17,12 +17,12 @@ class IndexController extends ControllerBase
         $this->view->show("login.php");
     }
 
-    public function perfil()
+    public function perfil($per)
     {
         require 'controllers/PerfilController.php';
 
         $perfil= new PerfilController();
-        $perfil->show();
+        $perfil->show($per);
     }
     
 
@@ -42,14 +42,15 @@ class IndexController extends ControllerBase
             $validado = $auth->Validar($_POST['username'], $_POST['password'],$_POST['perfil']);
             if ($validado) {
                     $id = $auth->getID($_POST['username'], $_POST['password'],$_POST['perfil']);
-                    if($id=!false){
+                 //   if($id=!false){
                      session_start();
                      $_SESSION['logeado'] = 1;
                      $_SESSION['perfil'] = $_POST['perfil'];
                      $_SESSION['id'] = $id;
-                     echo "logeado";
-                     $this->perfil();
-                    } else echo "error";
+                     $this->perfil($_SESSION['perfil']);
+                 //   } else {
+                  //      $mensaje .= '<script name="accion">alert("Error en la obtención del ID") </script>';
+                   //     echo $mensaje;}
             }
             else
                 $this->index();
@@ -60,5 +61,4 @@ class IndexController extends ControllerBase
 
 
 }
-
 ?>

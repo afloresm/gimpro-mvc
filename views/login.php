@@ -35,9 +35,9 @@
             <label for="password">Contrase&ntilde;a: <br/>
                 <input class="input" type="password" id="password" name="password"/></label>
             <br/>
-
             <p><label><input name="perfil" type="radio" id="perfil" value="alumno" tabindex="90"/>Alumno</label>
             <label><input name="perfil" type="radio" id="perfil" value="profesor" tabindex="90"/>Profesor</label>
+
             </p>
 
             <br/>
