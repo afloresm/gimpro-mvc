@@ -21,32 +21,33 @@ class RegistrarController extends ControllerBase {
 
         //Valida si es un user válido
 		$respuesta = $registar->validar_login($_POST['user']);
-        $data['respuesta'] = $respuesta;
+
 
          // Si es un user válido se procede a realizar el registro
-        if($data['respuesta']){
+        if($respuesta){
 
             $fecha_nacimiento = $_POST["anio"]."-".$_POST["mes"]."-".$_POST["dia"];
 
             // Almacena datos personales del alumno
-            $r=$registar->save($_POST['user'],$_POST['pass'],$_POST['nombres'],$_POST['ape'],$_POST['gen'],$fecha_nacimiento,$_POST['rut'],$_POST['rol'],$_POST['carrera'],$_POST['ciudad'],$_POST['celular'],$_POST['email']);
-            $data['respuesta'] = $r;
+            $r=$registar->save($_POST['user'],$_POST['pass'],$_POST['nombres'],$_POST['ape'],$_POST['gen'],$fecha_nacimiento,$_POST['rut'],$_POST['rol'],$_POST['carrera'],$_POST['ciudad'],$_POST['celular'],$_POST['email'],false);
 
             if($r){
 
               //Función que obtiene el id del alumno
               $id=$registar->getID($_POST['user'],$_POST['pass']);
-              $data['respuesta'] = $id;
+
 
                 if($id != false) {
-
+                    $data['id'] = $id;
+                    $data['username'] = $_POST['user'];
+                    $data['password'] = $_POST['pass'];
+                    $data['perfil'] = 'alumno';
+                    $data['habilitado'] = false;
                  //Almacena datos físicos del alumno
-                  $r=$registar->save_IMC($id,$_POST['peso'],$_POST['altura']);
+                    $r=$registar->save_IMC($id,$_POST['peso'],$_POST['altura']);
 
                     if($r){
-                         $data['respuesta'] = $id;
-                     //    echo "Alumno registrado";
-                         $this->view->show("encuesta.php",$data);
+                        $this->view->show("encuesta.php",$data);
                     }else{ $mensaje .= '<script name="accion">alert("No se registraron los datos físicos del alumno, vuelva a intentarlo por favor") </script>';
                         echo $mensaje;
                            $this->view->show("registrar.php");}

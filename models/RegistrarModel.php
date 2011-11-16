@@ -21,9 +21,9 @@ class RegistrarModel extends ModelBase{
 	    return false;
     }
 
-    public function save($user,$pass,$nombres,$apellidos,$genero,$fecha_nacimiento,$rut,$rol,$carrera,$ciudad,$celular,$email){
+    public function save($user,$pass,$nombres,$apellidos,$genero,$fecha_nacimiento,$rut,$rol,$carrera,$ciudad,$celular,$email,$habilitado){
 
-        $consulta = $this->db->prepare("INSERT INTO usuario (username, password, nombres, apellidos, genero, fecha_nacimiento, rut, rol, carrera, ciudad, celular, email) VALUES (:usuario,:pass,:nombres,:apellidos,:genero,:fecha_nacimiento,:rut,:rol,:carrera,:ciudad,:celular,:email) ");
+        $consulta = $this->db->prepare("INSERT INTO usuario (username, password, nombres, apellidos, genero, fecha_nacimiento, rut, rol, carrera, ciudad, celular, email, habilitado) VALUES (:usuario,:pass,:nombres,:apellidos,:genero,:fecha_nacimiento,:rut,:rol,:carrera,:ciudad,:celular,:email,:habilitado) ");
         $consulta->bindParam(':usuario', $user);
         $consulta->bindParam(':pass', $pass);
         $consulta->bindParam(':nombres', $nombres);
@@ -36,6 +36,7 @@ class RegistrarModel extends ModelBase{
         $consulta->bindParam(':ciudad', $ciudad);
         $consulta->bindParam(':celular', $celular);
         $consulta->bindParam(':email', $email);
+        $consulta->bindParam(':habilitado', $habilitado);
         $r=$consulta->execute();
 
         if($r) return true;

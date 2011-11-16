@@ -17,22 +17,21 @@ class IndexController extends ControllerBase
         $this->view->show("login.php");
     }
 
-    public function perfil($per)
-    {
-        require 'controllers/PerfilController.php';
-
-        $perfil= new PerfilController();
-        $perfil->show($per);
-    }
-    
-
     public function registrar()
     {
         $this->view->show("registrar.php");
 
     }
 
-    public function validate()
+    public function logout(){
+
+        session_start();
+        session_destroy();
+       // echo "sesion cerrada";
+        $this->view->show("login.php");
+    }
+
+  /*  public function validate()
     {
         require 'models/AuthModel.php';
 
@@ -55,7 +54,7 @@ class IndexController extends ControllerBase
             else
                 $this->index();
         }
-    }
+    }*/
 
    
 

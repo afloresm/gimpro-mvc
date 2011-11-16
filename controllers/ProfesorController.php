@@ -66,5 +66,17 @@ class ProfesorController extends ControllerBase {
            $this->view->show("estadistica.php");
     }
 
+    public function perfil_alumno(){
+             require 'models/AlumnosModel.php';
+            $alumno = new AlumnosModel();
+            $id_alumno= $_GET['id'];
+
+            $data['lesion']= $alumno->lesiones($id_alumno);
+            echo $data['lesion'];
+            $data = $alumno->datos($id_alumno);
+            $this->view->show("alumnoProfesor.php",$data);
+
+    }
+
 }
 ?>

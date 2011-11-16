@@ -56,5 +56,19 @@ class AuthModel extends ModelBase
         }
     }
 
+    public function status($id){
+
+        $consulta = $this->db->prepare("SELECT habilitado FROM usuario WHERE id_user=:id");
+        $consulta->bindParam(':id', $id);
+        $consulta->execute();
+        $row = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        if($row != 0) {
+            $i=$row['habilitado'];
+            return $i; }
+        else return false;
+        }
+
+
 
 }

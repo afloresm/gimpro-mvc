@@ -24,7 +24,7 @@
 <div id="wrapper">
     <h1><a href="index.html">Ingreso</a></h1>
 
-    <form action="?controlador=Index&accion=validate" method="post" name="loginform" id="loginform">
+    <form action="?controlador=Perfil&accion=validate" method="post" name="loginform" id="loginform">
         <fieldset>
             <p>
 
@@ -35,7 +35,7 @@
             <label for="password">Contrase&ntilde;a: <br/>
                 <input class="input" type="password" id="password" name="password"/></label>
             <br/>
-            <p><label><input name="perfil" type="radio" id="perfil" value="alumno" tabindex="90"/>Alumno</label>
+            <p><label><input name="perfil" type="radio" id="perfil" value="alumno" tabindex="90" CHECKED />Alumno</label>
             <label><input name="perfil" type="radio" id="perfil" value="profesor" tabindex="90"/>Profesor</label>
 
             </p>
@@ -52,7 +52,7 @@
         <p>Desarrollado para</p>
 
         <div class="logos">
-            <a href="http://www.inf.utfsm.cl/" alt="Lider en Ciencia y Tecnología"
+            <a href="http://www.telematica.utfsm.cl/" alt="Lider en Ciencia y Tecnología"
                title="Lider en Ciencia y Tecnología"><img src="public/img/di-logo.png"/></a>
             <a href="http://www.utfsm.cl/" alt="Lider en Ciencia y Tecnología"
                title="Lider en Ciencia y Tecnología"><img src="public/img/utfsm-logo.png"/></a>

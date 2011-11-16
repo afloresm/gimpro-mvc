@@ -27,30 +27,6 @@ $(document).ready(function() {
 
 });
 
-function loadVideo() {
-
-           var xmlhttp;
-           if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-               xmlhttp = new XMLHttpRequest();
-           }
-           else {// code for IE6, IE5
-               xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-           }
-
-           xmlhttp.onreadystatechange = function() {
-               if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                  alert(xmlhttp.responseText);
-
-                  // document.getElementById("link2").innerHTML = xmlhttp.responseText;
-               }
-           }
-
-           xmlhttp.open("POST", "?controlador=Alumno&accion=actualizar_datos", true);
-           xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-           xmlhttp.send();
-       }
-
-
 
 </script>
 
@@ -70,7 +46,7 @@ function loadVideo() {
 
         <div id="tab1" class="tab_content">
 
-    <form onsubmit="loadVideo()" name="Datos Personales" method="post" autocomplete= "off" ">
+    <form action="?controlador=Perfil&accion=actualizar_datos" name="Datos Personales" method="post" autocomplete= "off" ">
     <td><input name="id" type = "hidden" value="<?php echo $id_user; ?>"></td>
     <table>
     <tr>
@@ -115,7 +91,7 @@ function loadVideo() {
     </div>
 
     <div id="tab2" class="tab_content">
-            <form action="#" name="Datos académicos" method="post" autocomplete= "off" ">
+            <form action="?controlador=Perfil&accion=actualizar_academicos" name="Datos académicos" method="post" autocomplete= "off" ">
     <table>
     <tr>
 		<td>Carrera:</td>
@@ -136,7 +112,7 @@ function loadVideo() {
         </div>
 
         <div id="tab3" class="tab_content">
-    <form action="#" name="Datos cuenta" method="post" autocomplete= "off" ">
+    <form action="?controlador=Perfil&accion=actualizar_cuenta" name="Datos cuenta" method="post" autocomplete= "off" ">
     <table>
     <tr>
 		<td>Username:</td>
@@ -158,6 +134,5 @@ function loadVideo() {
     </div>
 
 </div>
-<
 </body>
 </html>

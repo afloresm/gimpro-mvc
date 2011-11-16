@@ -25,7 +25,11 @@
 
     <form action="?controlador=Encuesta&accion=guardar" method="post" name="registro" id="encuestaform">
 
-   <td><input name="id" type = "hidden" value="<?php echo $respuesta; ?>"></td>
+   <td><input name="id" type = "hidden" value="<?php echo $id; ?>"></td>
+   <td><input name="username" type = "hidden" value="<?php echo $username; ?>"></td>
+   <td><input name="password" type = "hidden" value="<?php echo $password; ?>"></td>
+   <td><input name="perfil" type = "hidden" value="<?php echo $perfil; ?>"></td>
+    <td><input name="habilitado" type = "hidden" value="<?php echo $habilitado; ?>"></td>
        <p>
 	   <h3>Alimentación </h3>
 
@@ -148,7 +152,7 @@
 				<td><input class="registar" name="ltorax" id="ltorax" type = "text" required disabled></td>
 			</tr>
 			<tr>
-				<td><input name="otral" id="otra" value="si" type = "checkbox"  onclick="document.registro.lotra.disabled=!document.registro.lotra.disabled">Otra Zona:</td>
+				<td><input name="otral" value="si" type = "checkbox"  onclick="document.registro.lotra.disabled=!document.registro.lotra.disabled">Otra Zona:</td>
 				<td><input class="registar" name="lotra" id="lotra" type = "text" required disabled></td>
 			</tr>
             <tr>

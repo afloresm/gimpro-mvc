@@ -72,6 +72,58 @@ class AlumnosModel extends ModelBase {
         else return false;
     }
 
-}
+     public function update_academic($id,$carrera,$rol){
 
+        $consulta = $this->db->prepare("UPDATE usuario SET carrera=:carrera, rol=:rol WHERE id_user=:id ");
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':carrera', $carrera);
+        $consulta->bindParam(':rol', $rol);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+    }
+
+      public function update_cuenta($id,$username,$password){
+     
+        $consulta = $this->db->prepare("UPDATE usuario SET username=:username, password=:password WHERE id_user=:id ");
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':username', $username);
+        $consulta->bindParam(':password', $password);
+        $r=$consulta->execute();
+
+        if($r) return true;
+        else return false;
+    }
+
+
+public function lesiones($id){
+
+        $consulta = $this->db->prepare("SELECT * FROM lesiones WHERE id_user=:id");
+        $consulta->bindParam(':id', $id);
+        $row=$consulta->execute();
+        $row=array();
+        $row = $consulta->fetch(PDO::FETCH_ASSOC);
+        $k=1;
+        $result=array();
+
+            var_dump($row);
+        
+          foreach ($row as $value => $key ){
+                $result[$k] = $key;
+                echo $result[$k];
+                 $k++;
+            //    $row = $row[$k];
+            }
+     $tipo=$result[4];
+       echo $tipo;
+        
+       return $tipo;
+
+     //   if($row != 0){ echo $row['tipo']; return $row['tipo'];}
+       // else return false;
+
+
+}
+}
 ?>

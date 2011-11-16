@@ -11,22 +11,18 @@
            header ('Content-type: text/html; charset=utf-8');
            $titulo=$estructura['titulo'];
            $controlador = $estructura['controlador'];
-           //$id= $estructura['id'];
+           $habilitado = $estructura['habilitado'];
+           $resp= array();
+           $resp = $respuestas;
 
     ?>
 
     <title>Gimnasio III: <?php echo $titulo ?></title>
-
     <meta name="keywords" content="" />
-
     <meta name="description" content="" />
-
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-
     <meta name="language" content="es" />
-
     <link href="public/css/perfil.css" rel="stylesheet" type="text/css" />
-
     <script type="text/javascript" src="public/js/jquery-1.6.4.js"></script>
 
     <script>
@@ -57,17 +53,68 @@
     return false;
 });
 
+    $('.btn').click(function(){
+
+         var id = $(this).attr("id");
+        showPerfil(id);
+       });
+
 
 });
-
-
-    </script>
+</script>
 
     <!-- Especificamos los script: JQUERY y el controlador del menu: menu_profesor.js -->
     <!--	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script> -->
     <!--	<script type="text/javascript" src="menu_profesor.js"></script> -->
     <!-- <script type="text/javascript" src="js/jquery.url.min.js"></script> -->
     <!-- <script type="text/javascript" src="ajax.js"></script> -->
+
+ <script language="javascript" type="text/javascript">
+     function showPerfil(id){
+        var ajaxRequest;
+         try{
+		// Opera 8.0+, Firefox, Safari
+		ajaxRequest = new XMLHttpRequest();
+	} catch (e){
+		// Internet Explorer Browsers
+		try{
+			ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try{
+				ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e){
+				// Something went wrong
+				alert("Your browser broke!");
+				return false;
+			}
+		}
+	}
+        ajaxRequest.onreadystatechange = function(){
+            if(ajaxRequest.readyState == 4){
+                $('.entry').empty();
+                $('.entry').append(ajaxRequest.responseText);
+
+
+               // if(ajaxDisplay.length ==0) ajaxDisplay = ajaxRequest.responseText;
+               // else alert("no esta vacio");
+                //  alert(ajaxRequest.responseText);
+                        }
+        }
+        var queryString = "&id=" + id;
+        ajaxRequest.open("GET", "?controlador=Profesor&accion=perfil_alumno" + queryString, true);
+        ajaxRequest.send(null);
+
+     }
+    //   $(document).ready(function(){
+     //  $('.btn').click(function(){
+
+ //        var id = $(this).attr("id");
+  //      showPerfil(id);
+  //     });
+   //  });
+
+ </script>
+
 
 </head>
 
@@ -83,7 +130,8 @@
 
     </div><!-- header -->
 
-    <div id="main"><div id="main2">	
+    <div id="main">
+        <div id="main2">
 
 	<!-- nuestro menu principal... fijarse que es sidebar y dentro de este va el li con el id que registra la accion a realizar-->
             <div id="sidebar">
@@ -105,7 +153,7 @@
                     ?>
 
                 </ul>
-
+                <a href="?controlador=Index&accion=logout">Cerrar sesión</a>
 				
 				<!-- esto (div id="box" )es el otro tipo de menu que trae el css hasta el momento no lo usamos-->
       <!--           <h2>Integer rhoncus</h2>
@@ -124,8 +172,14 @@
 <!-- Seccion o Cuerpo principal: �ste ser�a el por defecto al cargar la pagina. -->
            
 <div id="content">
+                
+                <?php if($controlador=="Profesor"){ ?>
+               	<fieldset><legend style="text-align:right"><h2>Ultimos Registrados </h2></legend>
+                <?php } else {?>
+                <fieldset><legend style="text-align:right"><h2>Bienvenido ! </h2></legend>
+                <?php } ?>
 
-				<fieldset><legend style="text-align:right"><h2>Ultimos Registrados </h2></legend>              
+
   
   <div class="post">
 
@@ -145,21 +199,20 @@
 					 $last=$array->getLastRegister();
 				*/
         
-        
-					 
-					?>
+                    if($controlador=='Profesor'){ ?>
+
+
                     <table border = 0.5 style="text-align: center">
-							<tr> <th>Nombre Alumno </th> <th>Nota Encuesta</th> <th>Habilitado</th> <th>Fecha Registro</th> </tr>
+					<tr> <th>Nombre Alumno </th> <th>Nota Encuesta</th> <th>Habilitado</th> <th>Fecha Registro</th><th>Ver perfil</th></tr>
 							<?php
 
                         while ($item = $welcome->fetch())
-                            { echo "<tr><td><a href='perfil.php?id=".$item['id_user']." title='Ver Perfil''>".$item['nombres']." ".$item['apellidos']."</a></td>";
-							  echo "<td><a href='result_encuesta.php?id=".$item['id_user']." title='Ver Perfil''>".$item['nota_encuesta']."</a></td>";
-							//  if($item->isHabilitado())
-						//	  echo "<td>".$item->getPerfil()."</td>";
-							//  else
-							  echo "<td><a href='link para cuadro de habilitacion' title='Click para Habilitar'>No</a></td>";
-							  echo "<td>".$item['fecha_inicio']."</td></tr>";
+                            { echo "<tr><td>".$item['nombres']." ".$item['apellidos']."</td>";
+                              echo "<input name=''id_user' id='id_user2' type = 'hidden' value=".$item['id_user'].">";
+							  echo "<td>".$item['nota_encuesta']."</td>";
+							  echo "<td>".$item['habilitado']."</td>";
+							  echo "<td>".$item['fecha_inicio']."</td>";
+                              echo "<td><input id='".$item['id_user']."' class='btn' type='button' value='ok'/></td></tr>";
 
 							}
 
@@ -177,6 +230,47 @@
                       */?>
 							
 					</table>
+                        <?php } else if($controlador=="Alumno" && $habilitado==true){ ?>
+                                <p>Bienvenido alumno</p>
+                               <?php } else if($controlador=="Alumno" && $habilitado==false && $resp==""){?>
+                                <p>Cuenta inhabilitada, a espera de la aprobación del profesor a cargo.</p>
+                                <?php } else if($controlador=="Alumno" && $habilitado==false && $resp!=""){ ?>
+
+                                         <h3>Resultados encuesta</h3>
+                                 <table>
+
+                                <td><b>Desayuno:</b> <?php echo $resp[0];   ?></td>
+                                 <tr></tr>
+                                <td><b>Almuerzo:</b> <?php echo $resp[1];   ?></td>
+                                 <tr></tr>
+                                <td><b>Consumo de agua:</b> <?php echo $resp[2];   ?></td>
+                                 <tr></tr>
+                                <td><b>Tabaco:</b> <?php echo $resp[3];   ?></td>
+                                 <tr></tr>
+                                <td><b>Alcohol:</b> <?php echo $resp[4];   ?></td>
+                                 <tr></tr>
+                                <td><b>Drogas:</b> <?php echo $resp[5];   ?></td>
+                                 <tr></tr>
+
+                                  <td><b>Enfermedades:</b> <?php echo $resp[6];   ?></td>
+                                  <tr></tr>
+
+                                 <td><b>Lesiones:</b> <?php echo $resp[7];   ?></td>
+                                  <tr></tr>
+
+                                 <td><b>Medicamento:</b> <?php echo $resp[8];   ?></td>
+                                  <tr></tr>
+
+                                 <td><b>Autestima:</b> <?php echo $resp[9];   ?></td>
+                                  <tr></tr>
+
+                                 <td><b>Actividad física:</b> <?php echo $resp[10];   ?></td>
+
+                                 </table>
+                                <?php } ?>
+
+
+
 				
 					
                     </div>

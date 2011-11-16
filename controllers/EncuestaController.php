@@ -14,6 +14,7 @@ class EncuestaController extends ControllerBase {
          //Incluye el modelo que corresponde
 		require 'models/EncuestaModel.php';
         require 'models/RegistrarModel.php';
+        require 'controllers/PerfilController.php';
 
         //Creamos una instancia de nuestro "modelo"
 		$encuesta = new EncuestaModel();
@@ -23,7 +24,7 @@ class EncuestaController extends ControllerBase {
 
         //Cálculo de la encuesta
         $id = $_POST['id'];
-        $ranking =0;
+         $ranking =0;
 
         if($_POST["desayuno"]==0){ $ranking+=0;  $resp[0]="No tomo desayuno";}
 	    else if($_POST["desayuno"]==1){ $ranking+=0;  $resp[0]="Solo tomo Líquidos (Leche,Café,Té,Jugo)";}
@@ -40,13 +41,13 @@ class EncuestaController extends ControllerBase {
 	    else if ($_POST["agua"]==2){ $ranking+=3; $resp[2]="2 Litros";}
     	else if ($_POST["agua"]==3){ $ranking+=5; $resp[2]="3 Litros o más";}
 
-	    if ($_POST["tabaco"]=="si"){ $ranking+=0; $resp[3]=$_POST["tabaco"].".".$_POST["tabacoCantidad"]."cigarrilos";}
+	    if ($_POST["tabaco"]=="si"){ $ranking+=0; $resp[3]=$_POST["tabaco"].".".$_POST["tabacoCantidad"]."cigarrillo(s)";}
 	    else if ($_POST["tabaco"]=="no"){ $ranking+=7; $resp[3]=$_POST["tabaco"]." consumo cigarrillos";}
 
 	    if ($_POST["alcohol"]=="si"){ $ranking+=0; $resp[4]=$_POST["alcohol"].".".$_POST["alcoholCantidad"]." vaso(s)";}
 	    else if ($_POST["alcohol"]=="no"){ $ranking+=3; $resp[4]=$_POST["alcohol"]."consumo alcohol";}
 
-	    if ($_POST["drogas"]=="si"){ $ranking+=0; $resp[5]=$_POST["drogas"].".".$_POST["drogasCantidad"]."veces";}
+	    if ($_POST["drogas"]=="si"){ $ranking+=0; $resp[5]=$_POST["drogas"].".".$_POST["drogasCantidad"]."vez(s)";}
 	    else if ($_POST["drogas"]=="no"){ $ranking+=10; $resp[5]=$_POST["drogas"]." consumo drogas";}
 
 	    if (isset($_POST["cardiaca"])){ $enfermedad=$_POST["ecardiaca"]; $tipoe="cardiaca"; $resp[6]="Zona afectada:Cardiaca.Enfermedad: ".$_POST["ecardiaca"];}
@@ -59,8 +60,8 @@ class EncuestaController extends ControllerBase {
 	    if (isset($_POST["brazos"])){ $lesion=$_POST["lbrazos"]; $tipol="brazos";  $resp[7]="Lesión:Brazos.Nombre: ".$_POST["lbrazos"];}
         if (isset($_POST["piernas"])){ $lesion=$_POST["lpiernas"]; $tipol="piernas"; $resp[7]="Lesión:Piernas.Nombre: ".$_POST["lpiernas"];}
         if (isset($_POST["torax"])){ $lesion=$_POST["ltorax"]; $tipol="torax"; $resp[7]="Lesión:Torax.Nombre: ".$_POST["ltorax"];}
-        if (isset($_POST["otral"])){ $lesion=$_POST["lotral"]; $tipol="otra"; $resp[7]="Lesión:Otra.Nombre: ".$_POST["lotra"];}
-        if (isset($_POST["nolesion"])){ $lesion="no tiene lesión"; $tipol="no tiene lesión"; $ranking+=10; $resp[7]="No tengo lesiones"; }
+        if (isset($_POST["otral"])){ $lesion=$_POST["lotra"]; $tipol="otra"; $resp[7]="Lesión:Otra.Nombre: ".$_POST["lotra"];}
+        if (isset($_POST["nolesiones"])){ $lesion="no tiene lesión"; $tipol="no tiene lesión"; $ranking+=10; $resp[7]="No tengo lesiones"; }
 
 	    if ($_POST["medica"]=="si"){ $ranking+=0; $resp[8]=$_POST["medica"].".Consumo:".$_POST["nombreMedica"];}
 	    else if ($_POST["medica"]=="no"){ $ranking+=5; $resp[8]=$_POST["medica"]." consumo medicamentos"; }
@@ -111,7 +112,8 @@ class EncuestaController extends ControllerBase {
            echo $mensaje;
            $this->view->show("encuesta.php",$data);}
 
-		$data['id'] = $id;
-        $this->view->show("resultados.php", $data);
-     }
+		 $data['id'] = $id;
+         $perfil= new PerfilController();
+         $perfil->session($id,$_POST['perfil'],$_POST['habilitado'],$data);
+          }
 }
