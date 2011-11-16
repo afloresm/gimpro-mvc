@@ -1,0 +1,547 @@
+
+*{  
+    margin: 0;  
+    padding: 0;  
+}
+ 
+/*
+header, footer, aside, nav, article {  
+    display: block;  
+}*/ 
+ /*
+ body {  
+    margin: 0 auto;  
+    width: 940px;  
+    font-family:"Comic Sans MS", cursive; 
+    background: #FFF;  
+} 
+*/ 
+/*
+h2 {  
+    font-size: 18px;  
+    line-height: 44px;  
+    padding: 22px 0;  
+} 
+
+*/ 
+#image1 {
+	width:960px;
+	height: 180px;
+	background-image:url('../img/perfil/gim_logo.jpg');
+	background-position: center;
+    }
+
+#sidebar {
+    float: left;
+    width: 240px;
+    padding-bottom: 20px;
+}
+
+#sidebar h2 {
+    padding-left: 20px;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 38px;
+    color: #FFFFFF;
+    background: #3476A7 url('../img/perfil/h2.jpg') no-repeat;
+}
+
+#sidebar .box {
+    padding: 15px 20px 20px 20px;
+    background: url('../img/perfil/box.jpg') no-repeat top;
+}
+
+#sidebar p {
+    text-align: left;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 15px 0 24px 0;
+    background: url('../img/perfil/box.jpg') no-repeat top;
+    cursor: pointer;
+    
+}
+
+#sidebar ul:hover {
+    list-style: none;
+    padding: 15px 0 24px 0;
+    background: url('../img/perfil/box.jpg') no-repeat top;
+    cursor: pointer;
+    opacity: 50;
+    
+}
+
+#sidebar ul li {
+    padding: 3px 10px 3px 20px;
+    line-height: 1.8em;
+    border-bottom: 1px solid #E0EBF2;
+ 
+}
+
+#sidebar ul li.on {
+    background:#A9A9A9
+ 
+}
+
+#sidebar ul li.off {
+   background: #F0F8FF;
+ 
+}
+
+#sidebar ul li a {
+    padding: 0;
+}
+
+#main {
+    width: 100%;
+    min-width: 960px;
+    padding: 12px 0;
+    background: #FFFFFF;
+}
+
+#main2 {
+    width: 908px;
+    margin: 0 auto;
+    padding: 25px 25px 0 25px;
+    border: 1px solid #E0EBF2;
+}
+
+
+
+body {
+    padding-bottom: 30px;
+    font: 13px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: #444444;
+      background: url('../img/perfil/body3.jpg') repeat ;
+}
+
+h1 {
+    padding: 15px 0 0 30px;
+    font-size: 38px;
+    color: #FFFFFF;
+}
+
+h1 a, h1 a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+p {
+    padding: 10px 0;
+    line-height: 1.8em;
+    text-align: justify;
+}
+
+p#subtitle {
+    padding: 0 0 0 30px;
+    font-style: italic;
+    font-size: 14px;
+    text-transform: lowercase;
+    color: #FFFFFF;
+}
+
+a {
+    color: #4082B2;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* header */
+
+#header {
+    position: relative;
+    width: 960px;
+    height: 200px;
+    margin: 0 auto;
+   /* background: #26639C url('img/header.jpg') no-repeat;*/
+}
+
+#logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 60px;
+    height: 77px;
+    border: none;
+}
+
+/* menu */
+
+
+
+/* search form */
+
+
+/* main */
+
+#main {
+    width: 100%;
+    min-width: 960px;
+    padding: 12px 0;
+    background: #FFFFFF;
+}
+
+#main2 {
+    width: 908px;
+    margin: 0 auto;
+    padding: 25px 25px 0 25px;
+    border: 1px solid #E0EBF2;
+}
+
+/* sidebar */
+
+#sidebar {
+    float: left;
+    width: 240px;
+    padding-bottom: 20px;
+}
+
+#sidebar h2 {
+    padding-left: 20px;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 38px;
+    color: #FFFFFF;
+    background: #3476A7 url('../img/perfil/h2.jpg') no-repeat;
+}
+
+#sidebar .box {
+    padding: 15px 20px 20px 20px;
+    background: url('../img/perfil/box.jpg') no-repeat top;
+}
+
+#sidebar p {
+    text-align: left;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 15px 0 24px 0;
+    background: url('../img/perfil/box.jpg') no-repeat top;
+}
+
+#sidebar ul li {
+    padding: 3px 10px 3px 20px;
+    line-height: 1.8em;
+    border-bottom: 1px solid #E0EBF2;
+}
+
+#sidebar ul li a {
+    padding: 0;
+}
+
+/* content */
+
+#content {
+    float: right;
+    width: 620px;
+    padding-bottom: 5px;
+}
+
+#content .post {
+    padding: 0 0 45px 0;
+}
+
+#content h2 {
+    font-size: 2em;
+    color: #3476A8;
+
+}
+
+#content h2 a {
+    color: #3476A8;
+    text-decoration: none;
+}
+
+p.postmeta {
+    color: #888888;
+}
+
+#content .entry {
+    padding: 10px 0 0 0;
+}
+
+.clearing {
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* footer */
+
+#footer {
+    width: 960px;
+    height: 70px;
+    margin: 0 auto;
+    padding-top: 10px;
+    background: url('../img/perfil/footer.jpg') no-repeat top;
+}
+
+#footer p {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#footer a {
+    color: #AFD8E8;
+}
+
+/*  style de gim3: cabecera */
+
+nav {  
+	width:788px;
+    position: absolute;  
+	background:url(../img/perfil/barra.png) repeat-x;
+	float:left;
+	text-align:justify;
+    
+	}
+
+nav ul {  
+    margin: 0 auto;  
+    width: 788px;  
+    list-style: none;  
+} 
+nav ul li {  
+    float: left;  
+} 
+nav ul li a {  
+         
+        margin-right: 50px;  
+        width: 200px;  
+        font-size: 15px;  
+        line-height: 44px;  
+        text-align: center;  
+        text-decoration: none;  
+        color: #000000  ;  
+    } 
+nav ul li a:hover {  
+            color: #CCCCFF ;  
+        }  
+  
+        nav ul li.selected a {  
+            color: #FF0000 ;  
+        }
+/* roScripts
+Table Design by Mihalcea Romeo
+www.roscripts.com
+----------------------------------------------- */
+
+table {
+		border-collapse:collapse;
+		background:#EFF4FB url(http://www.roscripts.com/images/teaser.gif) repeat-x;
+		border-left:1px solid #686868;
+		border-right:1px solid #686868;
+		font:1.3em/145% 'Trebuchet MS',helvetica,arial,verdana;
+		color: #333;
+}
+
+td, th {
+		padding:5px;
+}
+
+caption {
+		padding: 0 0 .5em 0;
+		text-align: left;
+		font-size: 1.4em;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: #333;
+		background: transparent;
+}
+
+/* =links
+----------------------------------------------- */
+
+table a {
+		color:#1d5987;
+		text-decoration:none;
+}
+
+table a:link {}
+
+table a:visited {
+		font-weight:normal;
+		color:#666;
+		text-decoration: line-through;
+}
+
+table a:hover {
+		border-bottom: 1px dashed #bbb;
+}
+
+/* =head =foot
+----------------------------------------------- */
+
+thead th, tfoot th, tfoot td {
+		background:#333 url(http://www.roscripts.com/images/llsh.gif) repeat-x;
+		color:#fff
+}
+
+tfoot td {
+		text-align:right
+}
+
+/* =body
+----------------------------------------------- */
+
+tbody th, tbody td {
+		border-bottom: dotted 1px #333;
+}
+
+tbody th {
+		white-space: nowrap;
+}
+
+tbody th a {
+		color:#333;
+}
+
+.odd {}
+
+tbody tr:hover {
+		background:#fafafa
+}
+
+/* = pestanas
+----------------------------------------------- */
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px;
+	background: #e0e0e0;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: 1px solid #fff;
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	clear: both;
+	float: left;
+	width: 100%;
+	background: #fff;
+	-moz-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+.tab_content h2 {
+	font-weight: normal;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #ddd;
+	font-size: 1.8em;
+}
+.tab_content h3 a{
+	color: #254588;
+}
+.tab_content img {
+	float: left;
+	margin: 0 20px 20px 0;
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+
+/* = celdas dinamicas
+----------------------------------------------- */
+        #box {
+            margin: 0px auto;
+            width: 960px;
+            background-color: #ffffff;
+            text-align: left;
+            position: absolute;
+        }
+
+        #addEjercicioFormContainer {
+            position: inherit;
+            left: 180px;
+            float: inherit;
+        }
+
+        #EjercicioForm {
+            height: 277px;
+            width: 351px;
+            /*   background-image: url('public/img/bkg.jpg');*/
+            display: none;
+        }
+
+        #EjercicioForm fieldset {
+            padding: 30px;
+            border: none;
+        }
+
+        #EjercicioForm label {
+            display: block;
+            color: #ffc400;
+        }
+
+        #EjercicioForm input[type=text] {
+            display: block;
+            border: solid 1px #4d3a24;
+            width: 100%;
+            margin-bottom: 10px;
+            height: 24px;
+        }
+
+        #EjercicioForm input[type=submit] {
+            background-color: #666666;
+            border: solid 1px #000000;
+            color: #000099;
+            padding: 5px;
+        }
+
+        #contactLink {
+            height: 40px;
+            width: 351px;
+            /*background-image:url('slidein_button.png'); */
+            display: block;
+            cursor: pointer;
+        }
+
+        #formSent {
+            color: #3333ff;
+            display: none;
+        }

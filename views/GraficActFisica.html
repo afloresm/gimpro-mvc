@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+		<!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+
+		<!-- 1a) Optional: add a theme file -->
+		<!--
+			<script type="text/javascript" src="../js/themes/gray.js"></script>
+		-->
+
+		<!-- 1b) Optional: the exporting module -->
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+
+
+		 <!-- JavaScript to initialize the chart on document ready -->
+      <script type="text/javascript">
+         $(document).ready(function() {
+            var options = {
+               chart: {
+                  renderTo: 'container',
+                  type: 'pie',
+                  plotBackgroundColor: null,
+                  plotBorderWidth: null,
+                  plotShadow: false
+               },
+               title: {
+                  text: 'Grafico de Actividad Fisica'
+               },
+                tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: false
+							},
+							showInLegend: true
+						}
+					},
+               series: [{
+                   type: 'pie',
+						name: 'Dias de Actividad Fisica',
+                   data:[]}]
+            };
+             // Load the data from the XML file
+
+             $.get('dataActFisica.xml', function(xml) {
+
+                 // Split the lines
+                 var $xml = $(xml);
+                  var seriesOptions = {data: [] };
+
+                 $xml.find('ttHeader').each(function () {
+   var $row = $(this);
+   var dataRow = {};
+   dataRow.name = $row.find('CustomerName').text();
+   dataRow.y = parseFloat( $row.find('TotalAmount').text());
+
+   seriesOptions.data.push(dataRow);
+});
+
+
+options.series.push(seriesOptions);
+ var chart = new Highcharts.Chart(options);
+});
+         });
+        
+      </script>
+   </head>
+   <body>
+      <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+   </body>
+</html>

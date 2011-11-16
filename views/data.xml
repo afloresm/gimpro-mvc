@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AgingReport>
+  <ttHeader>
+    <CustomerName>Customer 1</CustomerName>
+    <TotalAmount>250</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 2</CustomerName>
+    <TotalAmount>300</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 3</CustomerName>
+    <TotalAmount>350</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 4</CustomerName>
+    <TotalAmount>400</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 5</CustomerName>
+    <TotalAmount>450</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 6</CustomerName>
+    <TotalAmount>500</TotalAmount>
+  </ttHeader>
+  <ttHeader>
+    <CustomerName>Customer 7</CustomerName>
+    <TotalAmount>550</TotalAmount>
+  </ttHeader>
+</AgingReport>
